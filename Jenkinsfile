@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         NEW_VERSION = '1.2.1'
-        // SERVER_CREDENTIALS = credentials('server-shuja')
     }
     stages {
         stage("build") {
@@ -24,11 +23,6 @@ pipeline {
         stage("deploy") {
             steps {
                 echo 'deploying the app...'
-                withCredentials([
-                    usernamePassword(credentials: 'server-shuja', usernameVariable: USER, passwordVariable: PWD)
-                ]) {
-                    echo "some shell command ${USER} ${PWD}"
-                }
             }
         }
     }
