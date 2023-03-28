@@ -8,14 +8,14 @@ pipeline {
             steps {
                 echo 'building the app...'
                 echo "building version ${NEW_VERSION}"
-                sh "docker build -t saakbar/flask_rest_api:v1 ."
+                sh "sudo docker build -t saakbar/flask_rest_api:v1 ."
             }
         }
         stage("push") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh "docker login -u $USERNAME -p $PASSWORD"
-                    sh "docker push saakbar/flask_rest_api:v1"
+                    sh "sudo docker login -u $USERNAME -p $PASSWORD"
+                    sh "sudo docker push saakbar/flask_rest_api:v1"
                 }
             }
         }

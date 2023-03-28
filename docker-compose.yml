@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   web:
-    build: .
+    image: saakbar/flask_rest_api:v1
     ports:
       - "5000:5000"
     volumes:
