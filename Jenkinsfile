@@ -1,13 +1,22 @@
 pipeline {
     agent any
     environment {
-        NEW_VERSION = '1.2.1'
+        NEW_VERSION = 'v1'
     }
     stages {
         stage("build") {
             steps {
                 echo 'building the app...'
                 echo "building version ${NEW_VERSION}"
+                sh "docker build -t saakbar/flask_rest_api:v1 ."
+            }
+        }
+        stage("push") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "docker login -u $USERNAME -p $PASSWORD"
+                    sh "docker push saakbar/flask_rest_api:v1"
+                }
             }
         }
         stage("test") {
