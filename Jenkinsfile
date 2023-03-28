@@ -32,15 +32,15 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            // Some task which needs, to be executed after all stages
-        }
-        success {
-            // Task to be executed on succes only
-        }
-        failure {
-            // Task to be executed on failure only
-        }
-    }
+    // post {
+    //     always {
+    //         // Some task which needs, to be executed after all stages
+    //     }
+    //     success {
+    //         // Task to be executed on succes only
+    //     }
+    //     failure {
+    //         // Task to be executed on failure only
+    //     }
+    // }
 }
