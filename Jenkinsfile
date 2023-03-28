@@ -4,6 +4,11 @@ pipeline {
         NEW_VERSION = 'v1'
     }
     stages {
+        stage("remove") {
+            steps {
+                sh "docker-compose down"
+            }
+        }
         stage("build") {
             steps {
                 echo 'building the app...'
