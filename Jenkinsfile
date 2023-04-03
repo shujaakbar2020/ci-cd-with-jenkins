@@ -43,11 +43,11 @@ pipeline {
                 // echo 'deploying the app...'
                 // sh "docker-compose up -d"
                 ansiblePlaybook (
-                    playbook: 'first-playbook.yml'
+                    playbook: 'first-playbook.yml',
                     inventory: 'hosts.ini'
                 )
             }
-        }
+        }   
     }
     // post {
     //     always {
