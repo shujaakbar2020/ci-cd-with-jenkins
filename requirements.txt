@@ -13,4 +13,4 @@ six==1.13.0
 SQLAlchemy==1.3.10
 Werkzeug==0.16.0
 pymysql[rsa]
-# gunicorn
+gunicorn

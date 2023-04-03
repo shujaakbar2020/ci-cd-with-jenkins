@@ -1,0 +1,37 @@
+- hosts: servers
+  become: true
+
+  vars:
+    container_name: restapi
+    image: "saakbar/flask_rest_api:v1"
+    ports:
+      - "5000:5000"
+    docker_username: saakbar
+    docker_password: 1Imrannazir
+  
+  tasks:
+    - name: Login in to dockerhub
+      command: "docker login -u saakbar -p 1Imrannazir"
+
+    - name: Remove container if exists
+      community.docker.docker_container:
+        name: container_name
+        state: absent
+
+    - name: Remove images
+      shell: "docker rmi {{image}} --force"
+
+    - name: Pull an image
+      community.docker.docker_image:
+        name: saakbar/flask_rest_api
+        tag: v1
+        source: pull
+
+    - name: Run container
+      community.docker.docker_container:
+        name: container_name
+        image: "{{image}}"
+        pull: false
+        state: started
+        restart: yes
+        published_ports: "{{ ports }}"
